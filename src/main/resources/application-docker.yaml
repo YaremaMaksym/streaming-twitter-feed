@@ -1,0 +1,19 @@
+server:
+    port: 8080
+
+spring:
+    application:
+        name: user
+    datasource:
+        url: jdbc:postgresql://crdb-1:26257/twt_feed_db
+        username: admin
+        password: password
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                jdbc:
+                    lob:
+#                       fix connection
+                        non_contextual_creation: true

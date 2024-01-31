@@ -45,6 +45,18 @@ services:
         depends_on:
             - crdb-2
 
+    tweet-service:
+        container_name: tweet-service-container
+        image: xsakon/tweet-service-image:latest
+        ports:
+            - "8081:8081"
+        environment:
+            - SPRING_PROFILES_ACTIVE=docker
+        networks:
+            - network_cockroachdb
+        depends_on:
+            - crdb-2
+
 networks:
     network_cockroachdb:
         driver: bridge

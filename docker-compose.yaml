@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+    crdb-1:
+        container_name: crdb-1
+        image: cockroachdb/cockroach:v23.1.14
+        hostname: crdb-1
+        environment:
+            - COCKROACH_USER=admin
+            - COCKROACH_PASSWORD=password
+        ports:
+            - "26257:26257"
+            - "9080:9080"
+        command: start --insecure --join=crdb-1,crdb-2
+        volumes:
+            - cockroach-volume-1:/cockroach/cockroach-data
+        networks:
+            - network_cockroachdb
+
+    crdb-2:
+        container_name: crdb-2
+        image: cockroachdb/cockroach:v23.1.14
+        hostname: crdb-2
+        environment:
+            - COCKROACH_USER=admin
+            - COCKROACH_PASSWORD=password
+        ports:
+            - "26258:26258"
+            - "9081:9081"
+        command: start --insecure --join=crdb-1,crdb-2
+        volumes:
+            - cockroach-volume-2:/cockroach/cockroach-data
+        networks:
+            - network_cockroachdb
+
+networks:
+    network_cockroachdb:
+        driver: bridge
+
+volumes:
+    cockroach-volume-1:
+    cockroach-volume-2:

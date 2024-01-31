@@ -8,18 +8,20 @@
         <version>3.2.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>org.yaremax</groupId>
     <artifactId>streaming-twitter-feed</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>streaming-twitter-feed</name>
-    <description>streaming-twitter-feed</description>
 
     <modules>
         <module>user</module>
     </modules>
 
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
     </properties>
 

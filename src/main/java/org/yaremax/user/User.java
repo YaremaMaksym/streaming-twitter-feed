@@ -18,6 +18,6 @@ public class User {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "username", nullable = false, length = 280)
+    @Column(name = "username", nullable = false, length = 20)
     private String username;
 }

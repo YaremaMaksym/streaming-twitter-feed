@@ -33,18 +33,6 @@ services:
         networks:
             - network_cockroachdb
 
-    user-service:
-        container_name: user-service-container
-        image: xsakon/user-service-image:latest
-        ports:
-            - "8080:8080"
-        environment:
-            - SPRING_PROFILES_ACTIVE=docker
-        networks:
-            - network_cockroachdb
-        depends_on:
-            - crdb-2
-
     tweet-service:
         container_name: tweet-service-container
         image: xsakon/tweet-service-image:latest

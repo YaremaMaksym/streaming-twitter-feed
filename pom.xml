@@ -18,6 +18,7 @@
 
     <modules>
         <module>tweet</module>
+        <module>feed</module>
     </modules>
 
     <properties>

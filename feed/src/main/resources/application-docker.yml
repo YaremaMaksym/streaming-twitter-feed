@@ -1,0 +1,16 @@
+server:
+    port: 8080
+
+spring:
+    application:
+        name: feed
+    rabbitmq:
+        addresses: rabbitmq:5672
+
+rabbitmq:
+    exchange: tweet.exchange
+    routing-key: tweet.routing.key
+    queue: tweet.queue
+
+tweet-service:
+    host: tweet-service

@@ -46,6 +46,18 @@ services:
         depends_on:
             - crdb-2
 
+    feed-service:
+        container_name: feed-service-container
+        image: xsakon/feed-service-image:latest
+        ports:
+            - "8080:8080"
+        environment:
+            - SPRING_PROFILES_ACTIVE=docker
+        networks:
+            - network_spring
+        depends_on:
+            - crdb-2
+
     rabbitmq:
         image: rabbitmq:3.9-management-alpine
         container_name: rabbitmq

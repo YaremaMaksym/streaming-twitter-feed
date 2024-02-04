@@ -42,11 +42,23 @@ services:
             - SPRING_PROFILES_ACTIVE=docker
         networks:
             - network_cockroachdb
+            - network_spring
         depends_on:
             - crdb-2
 
+    rabbitmq:
+        image: rabbitmq:3.9-management-alpine
+        container_name: rabbitmq
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        networks:
+            - network_spring
+
 networks:
     network_cockroachdb:
+        driver: bridge
+    network_spring:
         driver: bridge
 
 volumes:

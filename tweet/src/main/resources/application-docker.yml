@@ -3,7 +3,7 @@ server:
 
 spring:
     application:
-        name: user
+        name: tweet
     datasource:
         url: jdbc:postgresql://crdb-1:26257/twt_feed_db
         username: admin
@@ -17,3 +17,9 @@ spring:
                     lob:
                         # fix connection
                         non_contextual_creation: true
+    rabbitmq:
+        addresses: rabbitmq:5672
+
+rabbitmq:
+    exchange: tweet.exchange
+    routing-key: tweet.routing.key

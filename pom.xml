@@ -17,6 +17,7 @@
     <name>streaming-twitter-feed</name>
 
     <modules>
+        <module>amqp</module>
         <module>tweet</module>
         <module>feed</module>
     </modules>

@@ -1,7 +1,10 @@
 package org.yaremax.tweet;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.yaremax.amqp.RabbitMQMessageProducer;
+import org.yaremax.amqp.dto.TweetDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,6 +14,16 @@ import java.util.List;
 public class TweetService {
 
     private final TweetRepository tweetRepository;
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
+
+    @Value("${rabbitmq.exchange}")
+    private String exchange;
+
+    @Value("${rabbitmq.routing-key}")
+    private String routingKey;
+//
+//    @Value("${rabbitmq.queue}")
+//    private String queue;
 
 //    TODO: paging
     public List<Tweet> getAllTweets() {
@@ -25,5 +38,17 @@ public class TweetService {
                 .build();
 
         tweetRepository.save(tweet);
+
+        TweetDto tweetDtoWithTime = new TweetDto(
+                tweet.getUserId(),
+                tweet.getContent(),
+                tweet.getCreatedAt()
+        );
+
+        rabbitMQMessageProducer.publish(
+                exchange,
+                routingKey,
+                tweetDtoWithTime
+        );
     }
 }

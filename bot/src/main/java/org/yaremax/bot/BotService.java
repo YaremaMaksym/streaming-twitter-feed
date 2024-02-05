@@ -54,8 +54,21 @@ public class BotService {
         botConfig.setBotRunning(false);
     }
 
-    public Boolean isBotRunning() {
-        return botConfig.isBotRunning();
+    public String getBotStatus() {
+        StringBuilder status = new StringBuilder();
+
+        status.append("Right now bot is ");
+        if (botConfig.isBotRunning()) {
+            status.append("running.\n");
+        }
+        else {
+            status.append("stopped.\n");
+        }
+        status.append("It posts a tweet every ")
+                .append(botConfig.getIntervalMilliseconds())
+                .append(" milliseconds");
+
+        return status.toString();
     }
 
     public Long getBotIntervalMilliseconds() {

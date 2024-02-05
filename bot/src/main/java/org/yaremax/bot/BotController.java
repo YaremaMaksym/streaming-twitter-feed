@@ -11,6 +11,12 @@ public class BotController {
 
     private final BotService botService;
 
+    @GetMapping("/status")
+    public ResponseEntity<String> getBotStatus() {
+        return ResponseEntity.ok()
+                .body(botService.getBotStatus());
+    }
+
     @PostMapping("/start")
     public ResponseEntity<String> startBot() {
         botService.startBot();

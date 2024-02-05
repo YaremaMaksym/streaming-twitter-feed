@@ -10,22 +10,34 @@ import reactor.core.publisher.Sinks;
 @Service
 public class FeedService {
 
-    private final Sinks.Many<TweetDto> sink = Sinks.many().multicast().onBackpressureBuffer();
+    private volatile Sinks.Many<TweetDto> sink = Sinks.many().multicast().onBackpressureBuffer();
     private final WebClient webClient = WebClient.create();
 
     @Value("${tweet-service.host}")
     private String tweetServiceHost;
+
+    private synchronized void resetSink() {
+        if (sink == null || sink.currentSubscriberCount() == 0) {
+            sink = Sinks.many().multicast().onBackpressureBuffer();
+        }
+    }
 
     public void receiveNewTweet(TweetDto tweetDto) {
         sink.tryEmitNext(tweetDto);
     }
 
     public Flux<TweetDto> getTweetsStream() {
-        return webClient.get()
+        resetSink();
+
+        Flux<TweetDto> liveTweets = webClient.get()
                 .uri("http://" + tweetServiceHost + ":8081/api/v1/tweets")
                 .retrieve()
-                .bodyToFlux(TweetDto.class)
-                .concatWith(sink.asFlux());
+                .bodyToFlux(TweetDto.class);
+
+        return Flux.merge(
+                liveTweets,
+                sink.asFlux()
+        ).doOnCancel(this::resetSink);
     }
 
 }

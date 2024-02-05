@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.yaremax.clients.tweet.TweetDto;
 import reactor.core.publisher.Flux;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/feed")
 @RequiredArgsConstructor

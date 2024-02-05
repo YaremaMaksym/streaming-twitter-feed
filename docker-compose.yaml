@@ -33,6 +33,15 @@ services:
         networks:
             - network_cockroachdb
 
+    rabbitmq:
+        image: rabbitmq:3.9-management-alpine
+        container_name: rabbitmq
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        networks:
+            - network_spring
+
     tweet-service:
         container_name: tweet-service-container
         image: xsakon/tweet-service-image:latest
@@ -57,6 +66,7 @@ services:
             - network_spring
         depends_on:
             - crdb-2
+            - rabbitmq
 
     bot-service:
         container_name: bot-service-container
@@ -65,15 +75,6 @@ services:
             - "8082:8082"
         environment:
             - SPRING_PROFILES_ACTIVE=docker
-        networks:
-            - network_spring
-
-    rabbitmq:
-        image: rabbitmq:3.9-management-alpine
-        container_name: rabbitmq
-        ports:
-            - "5672:5672"
-            - "15672:15672"
         networks:
             - network_spring
 

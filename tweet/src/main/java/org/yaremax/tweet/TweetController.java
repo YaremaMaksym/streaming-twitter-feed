@@ -8,6 +8,7 @@ import org.yaremax.clients.tweet.TweetDto;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/tweets")
 @RequiredArgsConstructor
@@ -17,14 +18,15 @@ public class TweetController {
 
     @GetMapping
     public ResponseEntity<List<Tweet>> getAllTweets() {
+        log.info("☑ Received getAllTweets() request");
         return ResponseEntity.ok()
                 .body(tweetService.getAllTweets());
     }
 
     @PostMapping
     public ResponseEntity<String> addTweet(@RequestBody TweetDto tweetDto) {
+        log.info("☑ Received addTweet() request with tweetDto " + tweetDto);
         tweetService.addTweet(tweetDto);
-
         return ResponseEntity.ok("Tweet was successfully added to db");
     }
 }

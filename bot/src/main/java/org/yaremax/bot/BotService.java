@@ -64,8 +64,11 @@ public class BotService {
 
     public void updateBotIntervalMilliseconds(Long intervalMilliseconds) {
         botConfig.setIntervalMilliseconds(intervalMilliseconds);
-        stopBot();
-        startBot();
+
+        if (botConfig.isBotRunning()) {
+            stopBot();
+            startBot();
+        }
     }
 
     private void sendRandomTweet() {

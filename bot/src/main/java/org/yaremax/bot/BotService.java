@@ -75,7 +75,7 @@ public class BotService {
                 .toBodilessEntity()
                 .subscribe(
                         result -> log.info("Tweet successfully sent"),
-                        error -> log.info("Error sending tweet: " + error.getMessage())
+                        error -> log.error("Error sending tweet: " + error.getMessage())
                 );
     }
 }

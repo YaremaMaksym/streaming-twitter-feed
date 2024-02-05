@@ -9,4 +9,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class BotConfig {
     private long intervalMilliseconds = 2000;
+    private boolean isBotRunning = false;
 }

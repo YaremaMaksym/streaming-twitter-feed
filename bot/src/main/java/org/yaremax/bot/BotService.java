@@ -37,6 +37,7 @@ public class BotService {
         }
 
         scheduler.scheduleAtFixedRate(this::sendRandomTweet, 0, botConfig.getIntervalMilliseconds(), TimeUnit.MILLISECONDS);
+        botConfig.setBotRunning(true);
     }
 
     public void stopBot() {
@@ -49,6 +50,12 @@ public class BotService {
             Thread.currentThread().interrupt(); // Відновити статус переривання
             scheduler.shutdownNow();
         }
+
+        botConfig.setBotRunning(false);
+    }
+
+    public Boolean isBotRunning() {
+        return botConfig.isBotRunning();
     }
 
     public Long getBotIntervalMilliseconds() {

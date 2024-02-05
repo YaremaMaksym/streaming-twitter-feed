@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
+import org.yaremax.clients.tweet.TweetDto;
 import org.yaremax.feed.FeedService;
-import org.yaremax.amqp.dto.TweetDto;
 
 @Slf4j
 @Component

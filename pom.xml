@@ -21,6 +21,7 @@
         <module>tweet</module>
         <module>feed</module>
         <module>bot</module>
+        <module>clients</module>
     </modules>
 
     <properties>

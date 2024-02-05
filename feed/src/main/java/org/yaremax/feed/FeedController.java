@@ -3,7 +3,7 @@ package org.yaremax.feed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.yaremax.amqp.dto.TweetDto;
+import org.yaremax.clients.tweet.TweetDto;
 import reactor.core.publisher.Flux;
 
 @RestController

@@ -1,4 +1,4 @@
-package org.yaremax.amqp.dto;
+package org.yaremax.clients.tweet;
 
 import java.time.LocalDateTime;
 

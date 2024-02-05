@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         scanBasePackages = {
                 "org.yaremax.tweet",
                 "org.yaremax.amqp",
+                "org.yaremax.clients",
         }
 )
 public class TweetApplication {

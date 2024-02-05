@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.yaremax.amqp.RabbitMQMessageProducer;
-import org.yaremax.amqp.dto.TweetDto;
+import org.yaremax.clients.tweet.TweetDto;
 
 import java.time.LocalDateTime;
 import java.util.List;

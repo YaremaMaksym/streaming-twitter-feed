@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Tweet Feed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .tweet {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Live Tweet Feed</h2>
+    <div id="feed"></div>
+
+    <script>
+        const feed = document.getElementById('feed');
+
+        // Встановлюємо з'єднання з сервером через EventSource
+        const eventSource = new EventSource('http://localhost:8080/api/v1/feed');
+
+        eventSource.onmessage = function(event) {
+            const tweet = JSON.parse(event.data);
+
+            const createdAt = new Date(tweet.createdAt).toLocaleString();
+
+            const tweetElement = document.createElement('div');
+            tweetElement.classList.add('tweet');
+            tweetElement.innerHTML = `<strong>User: ${tweet.userId}</strong>: ${tweet.content} <span style="float: right;">${createdAt}</span>`;
+
+            // Додаємо новий твіт у DOM
+            feed.prepend(tweetElement);
+        };
+
+        eventSource.onerror = function(error) {
+            console.error('EventSource failed:', error);
+            eventSource.close(); // Закриваємо з'єднання у випадку помилки
+        };
+    </script>
+</body>
+</html>

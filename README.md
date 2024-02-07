@@ -10,9 +10,10 @@ Here are some of the main features of the app:
 ## Table of Contents
 
 - [Technologies](#technologies)
+- [Demo](#demo)
 - [Installation](#installation)
 - [API](#api)
-
+  
 ## Technologies
 
 The project uses the following technologies and frameworks:
@@ -25,6 +26,10 @@ The project uses the following technologies and frameworks:
 - Maven (for dependency management)
 - Docker (containerization platform)
 - Git (for version control)
+
+## Demo
+Demonstration of feed page
+![NVIDIA_Share_F5b2IcMkj9](https://github.com/YaremaMaksym/streaming-twitter-feed/assets/31901135/275fa6d2-8175-4848-a9f3-9f5b9a09a69e)
 
 ## Installation
 

@@ -30,7 +30,7 @@ The project uses the following technologies and frameworks:
 
 To run whole project on docker containers, follow these steps:
 
-Have installed Git, Docker and Postman.
+Have installed Git and Docker. Postman - optional.
 
 1. Clone the repository:
 
@@ -40,18 +40,17 @@ Have installed Git, Docker and Postman.
 
 2. Run start up file `start.sh` (it calls docker-compose.yaml, initialises cockroachdb cluster and creates db):
    - Locate project folder in file explorer.
-   - Right click on him and choose "Git Bash Here".
+   - Right-click it and select "Git Bash Here".
    - Run `sh start.sh` in terminal.
+   - Wait until all 5 containers start 
 
-3. Make POST request on `http://localhost:8082/api/v1/bot/start` with your Postman to start bot (`../stop` - to stop).
-
-4. Open `feed.html` in your browser to see existing and latest tweets. 
+3. Open `feed.html` in your browser to see existing and latest tweets. 
 
 ## API
-- Feed:
+- Feed microservice:
   - GET http://localhost:8080/api/v1/feed to **get feed** (existing and latest tweets).
 
-- Tweet:
+- Tweet microservice:
   - GET http://localhost:8081/api/v1/tweets to **get all tweets**.
   - POST http://localhost:8081/api/v1/tweets with JSON body as in example to **add tweet to db**:
       ```
@@ -61,9 +60,9 @@ Have installed Git, Docker and Postman.
       }
       ```
 
-- Bot: 
-  - POST http://localhost:8082/api/v1/bot/start to **start bot**.
+- Bot microservice:
   - POST http://localhost:8082/api/v1/bot/stop to **stop bot**.
+  - POST http://localhost:8082/api/v1/bot/start to **start bot** (it starts by default).
   - GET http://localhost:8082/api/v1/bot/status to **get bot status**.
   - POST http://localhost:8082/api/v1/bot/speed?intervalMilliseconds=5000 to **change bot speed**.
   - GET http://localhost:8082/api/v1/bot/speed to **get bot speed**. Default is 2000 milliseconds per message.

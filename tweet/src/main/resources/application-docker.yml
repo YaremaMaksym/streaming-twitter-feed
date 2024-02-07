@@ -5,7 +5,7 @@ spring:
     application:
         name: tweet
     datasource:
-        url: jdbc:postgresql://crdb-1:26257/twt_feed_db
+        url: jdbc:postgresql://crdb-2:26257/twt_feed_db
         username: admin
         password: password
     jpa:

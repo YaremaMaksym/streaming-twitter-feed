@@ -21,6 +21,7 @@ The project uses the following technologies and frameworks:
 - Java
 - Spring (Framework, Boot, MVC, Data JPA)
 - Spring WebFlux (for HTTP Streaming)
+- RabbitMQ (for message queues)
 - CockroachDB (as database - cluster of 2 nodes)
 - Lombok (for boilerplate reduction)
 - Maven (for project management)

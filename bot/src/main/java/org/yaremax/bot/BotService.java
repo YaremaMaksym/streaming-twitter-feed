@@ -26,6 +26,8 @@ public class BotService {
         this.botConfig = botConfig;
         this.webClient = WebClient.create();
         this.scheduler = Executors.newScheduledThreadPool(1);
+
+        startBot();
     }
 
     @Value("${tweet-service.host}")

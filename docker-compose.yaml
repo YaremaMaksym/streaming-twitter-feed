@@ -54,6 +54,7 @@ services:
             - network_spring
         depends_on:
             - crdb-2
+            - rabbitmq
 
     feed-service:
         container_name: feed-service-container
